@@ -41,7 +41,6 @@
     jq
     tig
     delta
-    starship
     # nix development
     nixfmt-rfc-style
     nil
@@ -86,6 +85,7 @@
   programs.home-manager.enable = true;
 
   imports = [
-    ./config/vim
+    ./programs/vim
+    ./programs/starship
   ];
 }
