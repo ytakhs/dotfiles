@@ -36,14 +36,18 @@
     # '')
     #
     # base
+    delta
     git
-    zsh
+    ghq
     jq
     tig
-    delta
+    peco
     # nix development
     nixfmt-rfc-style
     nil
+    # zsh
+    zsh-autosuggestions
+    zsh-syntax-highlighting
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -78,13 +82,14 @@
   #  /etc/profiles/per-user/ytakhs/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "vim";
   };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
   imports = [
+    ./programs/zsh
     ./programs/vim
     ./programs/starship
   ];
