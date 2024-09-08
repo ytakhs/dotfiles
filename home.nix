@@ -1,10 +1,16 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  homeDirectory,
+  username,
+  ...
+}:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "ytakhs";
-  home.homeDirectory = "/home/ytakhs";
+  home.username = username;
+  home.homeDirectory = homeDirectory;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -37,7 +43,6 @@
     #
     # base
     delta
-    git
     ghq
     jq
     tig
@@ -90,6 +95,8 @@
 
   imports = [
     ./programs/zsh
+    ./programs/git
+    ./programs/gh
     ./programs/vim
     ./programs/starship
   ];
