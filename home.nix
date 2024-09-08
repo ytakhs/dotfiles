@@ -99,5 +99,6 @@
     ./programs/gh
     ./programs/vim
     ./programs/starship
+    ./programs/lazygit
   ];
 }

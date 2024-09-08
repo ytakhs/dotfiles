@@ -20,6 +20,10 @@
       GHQ_ROOT = "$HOME/dev/.ghq";
     };
 
+    shellAliases = {
+      lg = "lazygit";
+    };
+
     initExtra = ''
       bindkey -e
 
