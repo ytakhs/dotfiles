@@ -9,5 +9,8 @@ switch-with-backup:
 generations:
 	home-manager generations --flake $(ROOT_PATH)
 
+flake-update:
+	nix flake update --flake $(ROOT_PATH)
+
 init:
 	nix run home-manager/master -- init --switch $(ROOT_PATH)
