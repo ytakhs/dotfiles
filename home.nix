@@ -53,6 +53,9 @@
     # zsh
     zsh-autosuggestions
     zsh-syntax-highlighting
+    # zig
+    zigpkgs.master
+    zls
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
