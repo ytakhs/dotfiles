@@ -47,15 +47,19 @@
     jq
     tig
     peco
-    # nix development
-    nixfmt-rfc-style
-    nil
     # zsh
     zsh-autosuggestions
     zsh-syntax-highlighting
+    # nix development
+    nixfmt-rfc-style
+    nil
     # zig
     zigpkgs.master
     zls
+    # clang
+    llvmPackages_19.clang-unwrapped
+    # nodejs
+    fnm
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
