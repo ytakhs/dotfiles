@@ -23,16 +23,18 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      username = "ytakhs";
-      homeDirectory = "/home/${username}";
-    in
-    {
-      homeConfigurations = {
-        ${username} = home-manager.lib.homeManagerConfiguration {
+
+      sandboxUser = builtins.getEnv "FLAKE_USERNAME";
+      sandboxHomeDir = builtins.getEnv "FLAKE_HOMEDIR";
+
+      mkConfig =
+        {
+          username,
+          homeDirectory,
+        }:
+        home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
 
-          # Specify your home configuration modules here, for example,
-          # the path to your home.nix.
           modules = [
             (
               { config, pkgs, ... }:
@@ -43,13 +45,20 @@
             ../../home.nix
           ];
 
-          # Optionally use extraSpecialArgs
-          # to pass through arguments to home.nix
           extraSpecialArgs = {
             homeDirectory = homeDirectory;
             username = username;
           };
         };
+    in
+    {
+      homeConfigurations.ytakhs = mkConfig {
+        username = "ytakhs";
+        homeDirectory = /home/ytakhs;
+      };
+      homeConfigurations.${sandboxUser} = mkConfig {
+        username = sandboxUser;
+        homeDirectory = sandboxHomeDir;
       };
     };
 }
