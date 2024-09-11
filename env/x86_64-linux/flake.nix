@@ -23,10 +23,12 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      username = "ytakhs";
+      homeDirectory = "/home/${username}";
     in
     {
       homeConfigurations = {
-        ytakhs = home-manager.lib.homeManagerConfiguration {
+        ${username} = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
 
           # Specify your home configuration modules here, for example,
@@ -44,8 +46,8 @@
           # Optionally use extraSpecialArgs
           # to pass through arguments to home.nix
           extraSpecialArgs = {
-            homeDirectory = "/home/ytakhs";
-            username = "ytakhs";
+            homeDirectory = homeDirectory;
+            username = username;
           };
         };
       };
