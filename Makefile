@@ -12,6 +12,14 @@ switch:
 switch-with-backup:
 	home-manager switch --flake $(ROOT_PATH)#$(MAIN_USERNAME) -b backup
 
+.PHONY: switch-dyn
+switch-dyn:
+	home-manager switch --flake $(ROOT_PATH)#$(DOTFILES_SANDBOX_USERNAME) --impure
+
+.PHONY: switch-dyn-with-backup
+switch-dyn:
+	home-manager switch --flake $(ROOT_PATH)#$(DOTFILES_SANDBOX_USERNAME) --impure -b backup
+
 .PHONY: generations
 generations:
 	home-manager generations --flake $(ROOT_PATH)#$(MAIN_USERNAME)
@@ -19,16 +27,3 @@ generations:
 .PHONY: flake-update
 flake-update:
 	nix flake update --flake $(ROOT_PATH)
-
-.PHONY: init
-init:
-	nix run home-manager/master -- init --switch $(ROOT_PATH)#$(MAIN_USERNAME) -b backup
-
-.PHONY: init-sandbox
-init-sandbox:
-	nix run home-manager/master -- init --switch $(ROOT_PATH)#$(DOTFILES_SANDBOX_USERNAME) -b backup --impure
-
-.PHONY: switch-sandbox
-switch-sandbox:
-	home-manager switch --flake $(ROOT_PATH)#$(DOTFILES_SANDBOX_USERNAME) --impure
-

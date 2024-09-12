@@ -20,9 +20,9 @@ echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
 ```
 
 ```sh
-$ make init
+$ make switch
 # or
-$ make init-sandbox
+$ make switch-dyn
 ```
 
 ```sh
