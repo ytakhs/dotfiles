@@ -18,7 +18,7 @@ generations:
 
 .PHONY: flake-update
 flake-update:
-	nix flake update --flake $(ROOT_PATH)#$(MAIN_USERNAME)
+	nix flake update --flake $(ROOT_PATH)
 
 .PHONY: init
 init:
