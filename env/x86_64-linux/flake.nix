@@ -1,5 +1,5 @@
 {
-  description = "Home Manager configuration of ytakhs";
+  description = "Home Manager configuration";
 
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
@@ -24,8 +24,8 @@
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
 
-      sandboxUser = builtins.getEnv "DOTFILES_SANDBOX_USERNAME";
-      sandboxHomeDir = builtins.getEnv "DOTFILES_SANDBOX_HOMEDIR";
+      dynamicUser = builtins.getEnv "DOTFILES_DYNAMIC_USERNAME";
+      dynamicHomeDir = builtins.getEnv "DOTFILES_DYNAMIC_HOMEDIR";
 
       mkConfig =
         {
@@ -56,9 +56,9 @@
         username = "ytakhs";
         homeDirectory = /home/ytakhs;
       };
-      homeConfigurations.${sandboxUser} = mkConfig {
-        username = sandboxUser;
-        homeDirectory = sandboxHomeDir;
+      homeConfigurations.${dynamicUser} = mkConfig {
+        username = dynamicUser;
+        homeDirectory = dynamicHomeDir;
       };
     };
 }

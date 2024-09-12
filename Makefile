@@ -1,8 +1,8 @@
 ROOT_PATH=$(HOME)/dotfiles/env/x86_64-linux
 MAIN_USERNAME = ytakhs
 
-export DOTFILES_SANDBOX_USERNAME ?=$(shell whoami)
-export DOTFILES_SANDBOX_HOMEDIR ?=$(HOME)
+export DOTFILES_DYNAMIC_USERNAME ?=$(shell whoami)
+export DOTFILES_DYNAMIC_HOMEDIR ?=$(HOME)
 
 .PHONY: switch
 switch:
@@ -14,11 +14,11 @@ switch-with-backup:
 
 .PHONY: switch-dyn
 switch-dyn:
-	home-manager switch --flake $(ROOT_PATH)#$(DOTFILES_SANDBOX_USERNAME) --impure
+	home-manager switch --flake $(ROOT_PATH)#$(DOTFILES_DYNAMIC_USERNAME) --impure
 
 .PHONY: switch-dyn-with-backup
 switch-dyn:
-	home-manager switch --flake $(ROOT_PATH)#$(DOTFILES_SANDBOX_USERNAME) --impure -b backup
+	home-manager switch --flake $(ROOT_PATH)#$(DOTFILES_DYNAMIC_USERNAME) --impure -b backup
 
 .PHONY: generations
 generations:
