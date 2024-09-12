@@ -1,7 +1,7 @@
 ROOT_PATH=$(HOME)/dotfiles/env/x86_64-linux
 MAIN_USERNAME = ytakhs
 
-export DOTFILES_SANDBOX_USERNAME ?=$(whoami) 
+export DOTFILES_SANDBOX_USERNAME ?=$(shell whoami)
 export DOTFILES_SANDBOX_HOMEDIR ?=$(HOME)
 
 .PHONY: switch
@@ -30,4 +30,5 @@ init-sandbox:
 
 .PHONY: switch-sandbox
 switch-sandbox:
-	home-manager switch --flake $(ROOT_PATH)#$(DOTFILES_SANDBOX_USERNAME) -b backup
+	home-manager switch --flake $(ROOT_PATH)#$(DOTFILES_SANDBOX_USERNAME) --impure
+
