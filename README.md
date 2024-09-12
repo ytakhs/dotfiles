@@ -14,5 +14,18 @@ $ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/ni
 ### Initialize
 
 ```sh
+# if needed
+mkdir -p ~/.config/nix
+echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
+```
+
+```sh
 $ make init
+# or
+$ make init-sandbox
+```
+
+```sh
+$ sudo sh -c "echo $(which zsh) >> /etc/shells"
+$ sudo chsh -s $(which zsh)
 ```
