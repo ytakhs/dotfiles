@@ -1,22 +1,33 @@
 ROOT_PATH=$(HOME)/dotfiles/env/x86_64-linux
-DEFAULT_USER = ytakhs
+MAIN_USERNAME = ytakhs
+
+export DOTFILES_SANDBOX_USERNAME ?=$(whoami) 
+export DOTFILES_SANDBOX_HOMEDIR ?=$(HOME)
 
 .PHONY: switch
 switch:
-	home-manager switch --flake $(ROOT_PATH)#$(DEFAULT_USER)
+	home-manager switch --flake $(ROOT_PATH)#$(MAIN_USERNAME)
 
 .PHONY: switch-with-backup
 switch-with-backup:
-	home-manager switch --flake $(ROOT_PATH)#$(DEFAULT_USER) -b backup
+	home-manager switch --flake $(ROOT_PATH)#$(MAIN_USERNAME) -b backup
 
 .PHONY: generations
 generations:
-	home-manager generations --flake $(ROOT_PATH)#$(DEFAULT_USER)
+	home-manager generations --flake $(ROOT_PATH)#$(MAIN_USERNAME)
 
 .PHONY: flake-update
 flake-update:
-	nix flake update --flake $(ROOT_PATH)#$(DEFAULT_USER)
+	nix flake update --flake $(ROOT_PATH)#$(MAIN_USERNAME)
 
 .PHONY: init
 init:
-	nix run home-manager/master -- init --switch $(ROOT_PATH)#$(DEFAULT_USER) -b backup
+	nix run home-manager/master -- init --switch $(ROOT_PATH)#$(MAIN_USERNAME) -b backup
+
+.PHONY: init-sandbox
+init-sandbox:
+	nix run home-manager/master -- init --switch $(ROOT_PATH)#$(DOTFILES_SANDBOX_USERNAME) -b backup --impure
+
+.PHONY: switch-sandbox
+switch-sandbox:
+	home-manager switch --flake $(ROOT_PATH)#$(DOTFILES_SANDBOX_USERNAME) -b backup

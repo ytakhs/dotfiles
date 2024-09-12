@@ -24,8 +24,8 @@
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
 
-      sandboxUser = builtins.getEnv "FLAKE_USERNAME";
-      sandboxHomeDir = builtins.getEnv "FLAKE_HOMEDIR";
+      sandboxUser = builtins.getEnv "DOTFILES_SANDBOX_USERNAME";
+      sandboxHomeDir = builtins.getEnv "DOTFILES_SANDBOX_HOMEDIR";
 
       mkConfig =
         {
