@@ -25,9 +25,6 @@
     };
 
     initExtra = ''
-      # fnm
-      eval "$(fnm env --use-on-cd --shell zsh)"
-
       bindkey -e
 
       function peco-ghq-select() {
