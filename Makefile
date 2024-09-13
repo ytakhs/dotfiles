@@ -17,12 +17,16 @@ switch-dyn:
 	home-manager switch --flake $(ROOT_PATH)#$(DOTFILES_DYNAMIC_USERNAME) --impure
 
 .PHONY: switch-dyn-with-backup
-switch-dyn:
+switch-dyn-with-backup:
 	home-manager switch --flake $(ROOT_PATH)#$(DOTFILES_DYNAMIC_USERNAME) --impure -b backup
 
 .PHONY: generations
 generations:
-	home-manager generations --flake $(ROOT_PATH)#$(MAIN_USERNAME)
+	home-manager generations --flake $(ROOT_PATH)
+
+.PHONY: expire
+expire:
+	home-manager expire-generations --flake $(ROOT_PATH) $(EXPIRE)
 
 .PHONY: flake-update
 flake-update:
