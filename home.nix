@@ -46,7 +46,6 @@
     ghq
     jq
     tig
-    peco
     # zsh
     zsh-autosuggestions
     zsh-syntax-highlighting

@@ -27,27 +27,27 @@
     initExtra = ''
       bindkey -e
 
-      function peco-ghq-select() {
-        local selected_dir=$(ghq list --full-path | peco --layout=bottom-up --query "$LBUFFER")
+      function fzf-ghq-select() {
+        local selected_dir=$(ghq list --full-path | fzf --query "$LBUFFER")
         if [[ -n "$selected_dir" ]]; then
           cd "$selected_dir"
           zle accept-line
         fi
       }
-      zle -N peco-ghq-select
+      zle -N fzf-ghq-select
 
-      function peco-git-switch() {
-        local selected_branch="$(git branch | peco --layout=bottom-up | tr -d ' ')"
+      function fzf-git-switch() {
+        local selected_branch="$(git branch | fzf | tr -d ' ')"
 
         if [[ -n "$selected_branch" ]]; then
           git switch "$selected_branch"
           zle accept-line
         fi
       }
-      zle -N peco-git-switch
+      zle -N fzf-git-switch
 
-      bindkey '^g' peco-ghq-select
-      bindkey '^xf' peco-git-switch
+      bindkey '^g' fzf-ghq-select
+      bindkey '^xf' fzf-git-switch
     '';
   };
 }
