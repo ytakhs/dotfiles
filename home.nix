@@ -108,5 +108,6 @@
     ./programs/starship
     ./programs/lazygit
     ./programs/mise
+    ./programs/fzf
   ];
 }
