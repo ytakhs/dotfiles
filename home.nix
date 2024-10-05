@@ -57,8 +57,9 @@
     zls
     # clang
     llvmPackages_19.clang-unwrapped
-    # wabt
+    # wasm
     wabt
+    wasmtime
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
