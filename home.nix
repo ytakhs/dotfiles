@@ -58,7 +58,6 @@
     # clang
     llvmPackages_19.clang-unwrapped
     # wasm
-    wabt
     wasmtime
     wasm-tools
   ];
