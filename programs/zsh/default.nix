@@ -37,7 +37,11 @@
       zle -N fzf-ghq-select
 
       function fzf-git-switch() {
-        local selected_branch="$(git branch | fzf | tr -d ' ')"
+        local selected_branch=$(
+          git branch --sort=committerdate --color=always \
+          | fzf --ansi --preview='git log --oneline --graph --decorate --color=always -50 {+1}' \
+          | awk '{print $1}' \
+        )
 
         if [[ -n "$selected_branch" ]]; then
           git switch "$selected_branch"
