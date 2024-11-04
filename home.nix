@@ -55,6 +55,8 @@
     # zig
     zigpkgs.master
     zls
+    # rust
+    rustup
     # clang
     llvmPackages_19.clang-unwrapped
     # wasm
