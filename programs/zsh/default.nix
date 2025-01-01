@@ -25,6 +25,8 @@
     };
 
     initExtra = ''
+      export PATH="$HOME/.cargo/bin:$PATH"
+
       bindkey -e
 
       function fzf-ghq-select() {
