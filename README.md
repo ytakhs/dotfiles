@@ -1,14 +1,23 @@
-dotfiles
-===
+# dotfiles
 
 ## Usage
 
-### Install Nix
+### Install Nix & Home Manager
 
 https://determinate.systems/posts/determinate-nix-installer/
 
 ```sh
+# Install the Determinate Nix installer
 $ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+
+# Add the Home Manager channel
+$ nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+
+# Update the channels
+$ nix-channel --update
+
+# Install Home Manager
+$ nix-shell '<home-manager>' -A install
 ```
 
 ### Set up
