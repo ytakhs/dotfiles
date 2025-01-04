@@ -11,6 +11,8 @@
     # https://github.com/mitchellh/zig-overlay
     zig-overlay.url = "github:mitchellh/zig-overlay";
     zig-overlay.inputs.nixpkgs.follows = "nixpkgs";
+    xremap-flake.url = "github:xremap/nix-flake";
+    xremap-flake.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -18,6 +20,7 @@
       nixpkgs,
       home-manager,
       zig-overlay,
+      xremap-flake,
       ...
     }:
     let
@@ -39,7 +42,9 @@
             (
               { config, pkgs, ... }:
               {
-                nixpkgs.overlays = [ zig-overlay.overlays.default ];
+                nixpkgs.overlays = [
+                  zig-overlay.overlays.default
+                ];
               }
             )
             ./home.nix
@@ -48,6 +53,7 @@
           extraSpecialArgs = {
             homeDirectory = homeDirectory;
             username = username;
+            inherit xremap-flake;
           };
         };
     in
