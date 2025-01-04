@@ -1,4 +1,4 @@
-ROOT_PATH=$(HOME)/dotfiles/env/x86_64-linux
+ROOT_PATH=$(HOME)/dotfiles/env/x86_64-linux-desktop
 MAIN_USERNAME = ytakhs
 
 export DOTFILES_DYNAMIC_USERNAME ?=$(shell whoami)
