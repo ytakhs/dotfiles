@@ -42,7 +42,7 @@
                 nixpkgs.overlays = [ zig-overlay.overlays.default ];
               }
             )
-            ../../home.nix
+            ./home.nix
           ];
 
           extraSpecialArgs = {
