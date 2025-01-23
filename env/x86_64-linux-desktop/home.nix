@@ -55,7 +55,7 @@
     nixfmt-rfc-style
     nil
     # zig
-    zigpkgs.master
+    zig
     zls
     # rust
     rustup

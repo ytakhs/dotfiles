@@ -11,6 +11,8 @@
     # https://github.com/mitchellh/zig-overlay
     zig-overlay.url = "github:mitchellh/zig-overlay";
     zig-overlay.inputs.nixpkgs.follows = "nixpkgs";
+    zls-overlay.url = "github:zigtools/zls";
+    zls-overlay.inputs.nixpkgs.follows = "nixpkgs";
     xremap-flake.url = "github:xremap/nix-flake";
     xremap-flake.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -20,6 +22,7 @@
       nixpkgs,
       home-manager,
       zig-overlay,
+      zls-overlay,
       xremap-flake,
       ...
     }:
@@ -43,7 +46,18 @@
               { config, pkgs, ... }:
               {
                 nixpkgs.overlays = [
-                  zig-overlay.overlays.default
+                  (
+                    final: prev:
+                    let
+                      zig = zig-overlay.packages.${system}.master;
+                      zls = zls-overlay.packages.${system}.zls.overrideAttrs {
+                        nativeBuildInputs = [ zig ];
+                      };
+                    in
+                    {
+                      inherit zig zls;
+                    }
+                  )
                 ];
               }
             )
