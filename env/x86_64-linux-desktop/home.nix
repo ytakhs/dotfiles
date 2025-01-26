@@ -48,6 +48,7 @@
     ghq
     jq
     tig
+    hyperfine
     # zsh
     zsh-autosuggestions
     zsh-syntax-highlighting
