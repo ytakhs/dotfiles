@@ -49,6 +49,7 @@
     jq
     tig
     hyperfine
+    fastfetch
     # zsh
     zsh-autosuggestions
     zsh-syntax-highlighting
