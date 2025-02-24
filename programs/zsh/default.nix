@@ -17,7 +17,7 @@
     };
 
     sessionVariables = {
-      GHQ_ROOT = "$HOME/dev/.ghq";
+      GHQ_ROOT = "$HOME/dev/.ghq:$HOME/dotfiles";
     };
 
     shellAliases = {
