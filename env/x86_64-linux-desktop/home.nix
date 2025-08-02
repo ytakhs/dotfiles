@@ -50,6 +50,7 @@
     tig
     hyperfine
     fastfetch
+    neovim
     # zsh
     zsh-autosuggestions
     zsh-syntax-highlighting
@@ -79,6 +80,10 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+    ".config/nvim" = {
+      source = ./../../.config/nvim;
+      recursive = true;
+    };
   };
 
   # Home Manager can also manage your environment variables through
