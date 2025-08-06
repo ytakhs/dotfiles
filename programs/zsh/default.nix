@@ -17,14 +17,14 @@
     };
 
     sessionVariables = {
-      GHQ_ROOT = "$HOME/dev/.ghq:$HOME/dotfiles";
+      GHQ_ROOT = "$HOME/dev/.ghq";
     };
 
     shellAliases = {
       lg = "lazygit";
     };
 
-    initExtra = ''
+    initContent = ''
       export PATH="$HOME/.cargo/bin:$PATH"
       export PATH="$HOME/.local/bin:$PATH"
 
