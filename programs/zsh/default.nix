@@ -16,15 +16,8 @@
       share = true;
     };
 
-    sessionVariables = {
-      GHQ_ROOT = "$HOME/dev/.ghq";
-    };
-
-    shellAliases = {
-      lg = "lazygit";
-    };
-
     initContent = ''
+      export GHQ_ROOT="$HOME/dev/ghq"
       export PATH="$HOME/.cargo/bin:$PATH"
       export PATH="$HOME/.local/bin:$PATH"
 
