@@ -8,9 +8,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # https://github.com/mitchellh/zig-overlay
-    zig-overlay.url = "github:mitchellh/zig-overlay";
-    zig-overlay.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -36,13 +33,7 @@
           inherit pkgs;
 
           modules = [
-            (
-              { config, pkgs, ... }:
-              {
-                nixpkgs.overlays = [ zig-overlay.overlays.default ];
-              }
-            )
-            ../../home.nix
+            ./home.nix
           ];
 
           extraSpecialArgs = {

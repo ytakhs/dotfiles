@@ -49,19 +49,6 @@
     # zsh
     zsh-autosuggestions
     zsh-syntax-highlighting
-    # nix development
-    nixfmt-rfc-style
-    nil
-    # zig
-    zigpkgs.master
-    zls
-    # rust
-    rustup
-    # clang
-    llvmPackages_19.clang-unwrapped
-    # wasm
-    wasmtime
-    wasm-tools
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
