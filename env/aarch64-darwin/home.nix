@@ -1,4 +1,3 @@
-
 {
   config,
   pkgs,
@@ -95,7 +94,7 @@
   #  /etc/profiles/per-user/ytakhs/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    EDITOR = "neovim";
+    EDITOR = "vim";
   };
 
   # Let Home Manager install and manage itself.
@@ -109,5 +108,6 @@
     ../../programs/starship
     ../../programs/mise
     ../../programs/fzf
+    ../../programs/direnv
   ];
 }
