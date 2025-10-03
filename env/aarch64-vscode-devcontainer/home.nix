@@ -41,6 +41,7 @@
     # '')
     #
     # base
+    gh
     delta
     ghq
     jq
@@ -97,7 +98,6 @@
 
   imports = [
     ../../programs/zsh
-    ../../programs/gh
     ../../programs/vim
     ../../programs/starship
     ../../programs/mise

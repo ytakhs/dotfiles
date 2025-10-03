@@ -7,18 +7,22 @@
 
     extraConfig = {
       core = {
-        pager = "${pkgs.delta}/bin/delta --paging never";
+        pager = "delta --paging never";
       };
 
       pager = {
-        log = "${pkgs.delta}/bin/delta --paging never | less -+$LESS -R";
-        show = "${pkgs.delta}/bin/delta --paging never | less -+$LESS -R";
-        diff = "${pkgs.delta}/bin/delta --paging never | less -+$LESS -R";
-        blame = "${pkgs.delta}/bin/delta --paging never | less -+$LESS -R";
+        log = "delta --paging never | less -+$LESS -R";
+        show = "delta --paging never | less -+$LESS -R";
+        diff = "delta --paging never | less -+$LESS -R";
+        blame = "delta --paging never | less -+$LESS -R";
       };
 
       init = {
         defaultBranch = "main";
+      };
+
+      credential = {
+        helper = "gh auth git-credential";
       };
     };
   };
