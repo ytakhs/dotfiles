@@ -105,4 +105,6 @@
     ../../programs/fzf
     ../../programs/direnv
   ];
+
+  targets.genericLinux.enable = true;
 }
