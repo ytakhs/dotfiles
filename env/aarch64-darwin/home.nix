@@ -76,6 +76,10 @@
       source = ./../../.config/nvim;
       recursive = true;
     };
+    ".config/gh" = {
+      source = ./../../.config/gh;
+      recursive = true;
+    };
   };
 
   # Home Manager can also manage your environment variables through

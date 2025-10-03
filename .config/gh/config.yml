@@ -1,0 +1,6 @@
+aliases: {}
+editor: ""
+gitCredentialHelper:
+  enable: true
+git_protocol: https
+version: "1"
