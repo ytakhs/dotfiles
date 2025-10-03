@@ -97,7 +97,6 @@
 
   imports = [
     ../../programs/zsh
-    ../../programs/git
     ../../programs/gh
     ../../programs/vim
     ../../programs/starship
