@@ -47,16 +47,6 @@
     jq
     tig
     hyperfine
-    fastfetch
-    neovim
-    # zsh
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-    # nix development
-    nixfmt-rfc-style
-    nil
-    # rust
-    rustup
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -71,6 +61,10 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+    ".config/gh" = {
+      source = ./../../.config/gh;
+      recursive = true;
+    };
   };
 
   # Home Manager can also manage your environment variables through
