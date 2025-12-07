@@ -50,6 +50,7 @@
     hyperfine
     fastfetch
     neovim
+    gnupg
     # zsh
     zsh-autosuggestions
     zsh-syntax-highlighting
