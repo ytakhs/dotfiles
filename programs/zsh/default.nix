@@ -20,6 +20,7 @@
       export GHQ_ROOT="$HOME/dev/ghq"
       export PATH="$HOME/.cargo/bin:$PATH"
       export PATH="$HOME/.local/bin:$PATH"
+      export PATH="$HOME/.ghcup/bin:$PATH"
 
       bindkey -e
 
