@@ -2,10 +2,13 @@
 {
   programs.git = {
     enable = true;
-    userName = "ytakhs";
-    userEmail = "21127627+ytakhs@users.noreply.github.com";
 
-    extraConfig = {
+    settings = {
+      user = {
+        name = "ytakhs";
+        email = "21127627+ytakhs@users.noreply.github.com";
+      };
+
       core = {
         pager = "delta --paging never";
       };
