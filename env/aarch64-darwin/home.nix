@@ -4,6 +4,8 @@
   inputs,
   homeDirectory,
   username,
+  nixpkgs,
+  lib,
   ...
 }:
 
@@ -59,7 +61,16 @@
     nil
     # rust
     rustup
+    # unfree packages
+    claude-code
   ];
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "claude-code"
+    ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
