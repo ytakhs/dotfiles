@@ -53,6 +53,7 @@
     fastfetch
     neovim
     gnupg
+    zellij
     # zsh
     zsh-autosuggestions
     zsh-syntax-highlighting
