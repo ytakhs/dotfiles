@@ -183,6 +183,21 @@ return {
       vim.keymap.set("n", "<leader>do", ":DiffviewOpen<CR>", { desc = "Open Diffview" })
       vim.keymap.set("n", "<leader>dc", ":DiffviewClose<CR>", { desc = "Close Diffview" })
     end
+  },
+  {
+    "linrongbin16/gitlinker.nvim",
+    cmd = "GitLink",
+    opts = {},
+    config = function()
+      require("gitlinker").setup()
+
+      vim.keymap.set("v", "<leader>gy", ":GitLink<CR>", { desc = "Yank Git link" })
+      vim.keymap.set("v", "<leader>gY", ":GitLink!<CR>", { desc = "Open Git link" })
+    end
+  },
+  {
+    "numToStr/Comment.nvim",
+    opts = {},
   }
 }
 
