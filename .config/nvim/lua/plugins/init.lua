@@ -99,7 +99,7 @@ return {
       require("hlchunk").setup({
         indent = {
           enable = true
-        },
+          },
         line_num = {
           enable = true
         },
@@ -130,6 +130,10 @@ return {
       sources = {
         default = {"lsp", "path", "snippets", "buffer"},
       },
+      keymap = {
+        preset = "default",
+        ["CR"] = {"accept", "fallback"},
+      }
     }
   },
   {
@@ -151,7 +155,18 @@ return {
 
       vim.keymap.set('n', '<leader>bn', ':BufferNext<CR>', { desc = "Next buffer" })
       vim.keymap.set('n', '<leader>bp', ':BufferPrevious<CR>', { desc = "Previous buffer" })
+      vim.keymap.set('n', '<leader>bc', ':BufferClose<CR>', { desc = "Close buffer" })
+      vim.keymap.set("n", "<leader>br", ":BufferRestore<CR>", { desc = "Restore buffer" })
     end
+  },
+  {
+    "akinsho/toggleterm.nvim",
+    event = "VeryLazy",
+    version = "*",
+    config = function()
+      require("toggleterm").setup({})
+      vim.keymap.set('n', '<leader>t', ':ToggleTerm direction=float<CR>', { desc = "Toggle Terminal" })
+    end,
   }
 }
 
