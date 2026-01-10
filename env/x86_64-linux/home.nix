@@ -1,14 +1,16 @@
 {
   config,
   pkgs,
+  inputs,
   homeDirectory,
   username,
+  lib,
+  xremap-flake,
   ...
 }:
 
 {
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
+
   home.username = username;
   home.homeDirectory = homeDirectory;
 
@@ -46,9 +48,24 @@
     ghq
     jq
     tig
+    hyperfine
+    fastfetch
+    neovim
     # zsh
     zsh-autosuggestions
     zsh-syntax-highlighting
+    # nix development
+    nixfmt-rfc-style
+    nil
+    # zig
+    zig
+    zls
+    # rust
+    rustup
+    # c/c++
+    clang-tools
+    # wasm
+    wasm-tools
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -58,12 +75,15 @@
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
-
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+    ".config/nvim" = {
+      source = ./../../.config/nvim;
+      recursive = true;
+    };
   };
 
   # Home Manager can also manage your environment variables through
@@ -84,18 +104,20 @@
   #
   home.sessionVariables = {
     EDITOR = "vim";
+    LANG = "en_US.UTF-8";
   };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
   imports = [
-    ./programs/zsh
-    ./programs/git
-    ./programs/gh
-    ./programs/vim
-    ./programs/starship
-    ./programs/mise
-    ./programs/fzf
+    ./xremap
+    ../../programs/zsh
+    ../../programs/git
+    ../../programs/gh
+    ../../programs/vim
+    ../../programs/starship
+    ../../programs/mise
+    ../../programs/fzf
   ];
 }

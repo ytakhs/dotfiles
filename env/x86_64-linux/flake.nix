@@ -8,6 +8,13 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # https://github.com/mitchellh/zig-overlay
+    zig-overlay.url = "github:mitchellh/zig-overlay";
+    zig-overlay.inputs.nixpkgs.follows = "nixpkgs";
+    zls-overlay.url = "github:zigtools/zls";
+    zls-overlay.inputs.nixpkgs.follows = "nixpkgs";
+    xremap-flake.url = "github:xremap/nix-flake";
+    xremap-flake.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -15,6 +22,8 @@
       nixpkgs,
       home-manager,
       zig-overlay,
+      zls-overlay,
+      xremap-flake,
       ...
     }:
     let
@@ -33,12 +42,32 @@
           inherit pkgs;
 
           modules = [
+            (
+              { config, pkgs, ... }:
+              {
+                nixpkgs.overlays = [
+                  (
+                    final: prev:
+                    let
+                      zig = zig-overlay.packages.${system}.master;
+                      zls = zls-overlay.packages.${system}.zls.overrideAttrs {
+                        nativeBuildInputs = [ zig ];
+                      };
+                    in
+                    {
+                      inherit zig zls;
+                    }
+                  )
+                ];
+              }
+            )
             ./home.nix
           ];
 
           extraSpecialArgs = {
             homeDirectory = homeDirectory;
             username = username;
+            inherit xremap-flake;
           };
         };
     in
