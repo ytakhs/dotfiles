@@ -54,6 +54,7 @@
     neovim
     gnupg
     zellij
+    ripgrep
     # zsh
     zsh-autosuggestions
     zsh-syntax-highlighting
