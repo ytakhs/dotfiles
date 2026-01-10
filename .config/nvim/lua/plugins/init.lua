@@ -45,6 +45,13 @@ return {
       require("orgmode").setup({
         org_agenda_files = "~/orgfiles/**/*",
         org_default_notes_file = "~/orgfiles/refile.org",
+        org_capture_templates = {
+          t = {
+            description = "TODO",
+            template = "* TODO %?\n SCHEDULED: %t",
+            target = "~/orgfiles/refile.org"
+          },
+        }
       })
     end,
   },
@@ -63,7 +70,7 @@ return {
           filtered_items = {
             hide_dotfiles = false,
           },
-   },
+        },
       })
 
       vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>')
@@ -131,8 +138,7 @@ return {
         default = {"lsp", "path", "snippets", "buffer"},
       },
       keymap = {
-        preset = "default",
-        ["CR"] = {"accept", "fallback"},
+        preset = "enter",
       }
     }
   },
@@ -167,6 +173,16 @@ return {
       require("toggleterm").setup({})
       vim.keymap.set('n', '<leader>t', ':ToggleTerm direction=float<CR>', { desc = "Toggle Terminal" })
     end,
+  },
+  {
+    "sindrets/diffview.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("diffview").setup({})
+
+      vim.keymap.set("n", "<leader>do", ":DiffviewOpen<CR>", { desc = "Open Diffview" })
+      vim.keymap.set("n", "<leader>dc", ":DiffviewClose<CR>", { desc = "Close Diffview" })
+    end
   }
 }
 
