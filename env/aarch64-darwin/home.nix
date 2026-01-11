@@ -55,6 +55,8 @@
     gnupg
     zellij
     ripgrep
+    # lua
+    lua-language-server
     # zsh
     zsh-autosuggestions
     zsh-syntax-highlighting
