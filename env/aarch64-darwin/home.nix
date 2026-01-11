@@ -57,6 +57,7 @@
     ripgrep
     # lua
     lua-language-server
+    stylua
     # zsh
     zsh-autosuggestions
     zsh-syntax-highlighting
