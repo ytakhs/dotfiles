@@ -2,39 +2,42 @@
 
 ## Usage
 
-### Install Nix & Home Manager
+### Install Nix
 
 https://determinate.systems/posts/determinate-nix-installer/
 
 ```sh
-# Install the Determinate Nix installer
-$ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
-
-# Add the Home Manager channel
-$ nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-
-# Update the channels
-$ nix-channel --update
-
-# Install Home Manager
-$ nix-shell '<home-manager>' -A install
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 ```
 
 ### Set up
 
 ```sh
-# if needed
-mkdir -p ~/.config/nix
-echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
+git clone https://github.com/ytakhs/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+nix run .#switch
 ```
 
 ```sh
-$ make switch
-# or
-$ make switch-dyn
+sudo sh -c "echo $(which zsh) >> /etc/shells"
+chsh -s $(which zsh)
 ```
 
+## Commands
+
 ```sh
-$ sudo sh -c "echo $(which zsh) >> /etc/shells"
-$ sudo chsh -s $(which zsh)
+# Apply configuration
+nix run .#switch
+
+# Apply with backup
+nix run .#switch-with-backup
+
+# List generations
+nix run .#generations
+
+# Remove old generations
+nix run .#expire -- "-7 days"
+
+# Update flake inputs
+nix run .#flake-update
 ```
