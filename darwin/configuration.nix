@@ -20,6 +20,12 @@ in
       "claude-code"
     ];
 
+  # Fonts
+  fonts.packages = with pkgs; [
+    udev-gothic
+    udev-gothic-nf
+  ];
+
   # System configuration
   system.stateVersion = 6;
 
