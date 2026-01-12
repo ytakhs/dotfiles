@@ -31,7 +31,7 @@
     zsh-autosuggestions
     zsh-syntax-highlighting
     # nix development
-    nixfmt-rfc-style
+    nixfmt
     nil
     # rust
     rustup
