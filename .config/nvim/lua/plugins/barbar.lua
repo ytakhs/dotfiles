@@ -8,14 +8,13 @@ return {
 	init = function()
 		vim.g.barbar_auto_setup = false
 	end,
-	config = function()
-		require("barbar").setup({
-			animation = true,
-		})
-
-		vim.keymap.set("n", "<leader>bn", ":BufferNext<CR>", { desc = "Next buffer" })
-		vim.keymap.set("n", "<leader>bp", ":BufferPrevious<CR>", { desc = "Previous buffer" })
-		vim.keymap.set("n", "<leader>bc", ":BufferClose<CR>", { desc = "Close buffer" })
-		vim.keymap.set("n", "<leader>br", ":BufferRestore<CR>", { desc = "Restore buffer" })
-	end,
+	opts = {
+		animation = true,
+	},
+	keys = {
+		{ "<leader>bn", ":BufferNext<CR>", desc = "Next buffer" },
+		{ "<leader>bp", ":BufferPrevious<CR>", desc = "Previous buffer" },
+		{ "<leader>bc", ":BufferClose<CR>", desc = "Close buffer" },
+		{ "<leader>br", ":BufferRestore<CR>", desc = "Restore buffer" },
+	},
 }

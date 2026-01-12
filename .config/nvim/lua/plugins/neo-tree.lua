@@ -7,23 +7,22 @@ return {
 		"nvim-tree/nvim-web-devicons",
 	},
 	lazy = false,
-	config = function()
-		require("neo-tree").setup({
-			filesystem = {
-				filtered_items = {
-					hide_dotfiles = false,
-				},
-				hidden_by_name = {
-					"node_modules",
-					".git",
-				},
-				never_show = {
-					".DS_Store",
-				},
+	opts = {
+		filesystem = {
+			filtered_items = {
+				hide_dotfiles = false,
 			},
-		})
-
-		vim.keymap.set("n", "<leader>e", ":Neotree toggle<CR>")
-		vim.keymap.set("n", "<leader>0", ":Neotree focus<CR>")
-	end,
+			hidden_by_name = {
+				"node_modules",
+				".git",
+			},
+			never_show = {
+				".DS_Store",
+			},
+		},
+	},
+	keys = {
+		{ "<leader>e", ":Neotree toggle<CR>", desc = "Toggle Neo-tree" },
+		{ "<leader>0", ":Neotree reveal<CR>", desc = "Reveal file in Neo-tree" },
+	},
 }
