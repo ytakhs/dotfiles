@@ -253,9 +253,13 @@ return {
 		end,
 	},
 	{
+		"folke/neoconf.nvim",
+	},
+	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			"saghen/blink.cmp",
+			"folke/neoconf.nvim", -- for lspconfig integration
 		},
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
