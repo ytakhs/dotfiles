@@ -29,6 +29,13 @@ chsh -s $(which zsh)
 # Apply configuration
 nix run .#switch
 
+# Update flake inputs
+nix run .#flake-update
+```
+
+### Linux only
+
+```sh
 # Apply with backup
 nix run .#switch-with-backup
 
@@ -37,7 +44,4 @@ nix run .#generations
 
 # Remove old generations
 nix run .#expire -- "-7 days"
-
-# Update flake inputs
-nix run .#flake-update
 ```

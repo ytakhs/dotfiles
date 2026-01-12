@@ -1,0 +1,41 @@
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+
+let
+  username = "ytakhs";
+  homeDirectory = "/Users/${username}";
+in
+{
+  # Nix configuration (managed by Determinate Nix installer)
+  nix.enable = false;
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "claude-code"
+    ];
+
+  # System configuration
+  system.stateVersion = 6;
+
+  # Home Manager integration
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.${username} = import ../home/darwin.nix;
+    extraSpecialArgs = {
+      inherit username homeDirectory;
+    };
+  };
+
+  # User configuration
+  users.users.${username} = {
+    name = username;
+    home = homeDirectory;
+  };
+}

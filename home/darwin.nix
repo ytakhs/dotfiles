@@ -3,7 +3,6 @@
   pkgs,
   homeDirectory,
   username,
-  lib,
   ...
 }:
 
@@ -40,12 +39,6 @@
     claude-code
   ];
 
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      "claude-code"
-    ];
-
   home.file = {
     ".config/nvim" = {
       source = ../.config/nvim;
@@ -60,8 +53,6 @@
   home.sessionVariables = {
     EDITOR = "vim";
   };
-
-  programs.home-manager.enable = true;
 
   imports = [
     ../programs/zsh

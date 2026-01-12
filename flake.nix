@@ -1,10 +1,14 @@
 {
-  description = "Home Manager configuration";
+  description = "Nix configuration";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Linux-specific inputs
@@ -24,27 +28,16 @@
 
   outputs =
     {
+      self,
       nixpkgs,
       home-manager,
+      nix-darwin,
       zig-overlay,
       zls-overlay,
       xremap-flake,
       ...
     }:
     let
-      mkDarwinHome =
-        {
-          username,
-          homeDirectory,
-        }:
-        home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-          modules = [ ./home/darwin.nix ];
-          extraSpecialArgs = {
-            inherit username homeDirectory;
-          };
-        };
-
       mkLinuxHome =
         {
           username,
@@ -81,12 +74,34 @@
             inherit username homeDirectory xremap-flake;
           };
         };
-      mkApps =
-        system:
+
+      mkDarwinApps =
         let
-          pkgs = nixpkgs.legacyPackages.${system};
-          configName =
-            if system == "aarch64-darwin" then "ytakhs@darwin" else "ytakhs@linux";
+          pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+          flakePath = "$HOME/dotfiles";
+        in
+        {
+          switch = {
+            type = "app";
+            program = toString (
+              pkgs.writeShellScript "switch" ''
+                sudo nix run nix-darwin -- switch --flake ${flakePath}
+              ''
+            );
+          };
+          flake-update = {
+            type = "app";
+            program = toString (
+              pkgs.writeShellScript "flake-update" ''
+                nix flake update --flake ${flakePath}
+              ''
+            );
+          };
+        };
+
+      mkLinuxApps =
+        let
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
           flakePath = "$HOME/dotfiles";
           hmCmd = "nix run nixpkgs#home-manager --";
         in
@@ -95,7 +110,7 @@
             type = "app";
             program = toString (
               pkgs.writeShellScript "switch" ''
-                ${hmCmd} switch --flake ${flakePath}#${configName}
+                ${hmCmd} switch --flake ${flakePath}#ytakhs@linux
               ''
             );
           };
@@ -103,7 +118,7 @@
             type = "app";
             program = toString (
               pkgs.writeShellScript "switch-with-backup" ''
-                ${hmCmd} switch --flake ${flakePath}#${configName} -b backup
+                ${hmCmd} switch --flake ${flakePath}#ytakhs@linux -b backup
               ''
             );
           };
@@ -134,11 +149,15 @@
         };
     in
     {
+      darwinConfigurations.ytakhs = nix-darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        modules = [
+          home-manager.darwinModules.home-manager
+          ./darwin/configuration.nix
+        ];
+      };
+
       homeConfigurations = {
-        "ytakhs@darwin" = mkDarwinHome {
-          username = "ytakhs";
-          homeDirectory = /Users/ytakhs;
-        };
         "ytakhs@linux" = mkLinuxHome {
           username = "ytakhs";
           homeDirectory = /home/ytakhs;
@@ -146,8 +165,8 @@
       };
 
       apps = {
-        aarch64-darwin = mkApps "aarch64-darwin";
-        x86_64-linux = mkApps "x86_64-linux";
+        aarch64-darwin = mkDarwinApps;
+        x86_64-linux = mkLinuxApps;
       };
     };
 }
