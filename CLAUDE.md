@@ -9,43 +9,43 @@ This is a Nix-based dotfiles repository using Home Manager to manage system conf
 ## Common Commands
 
 ```sh
-# Apply configuration (primary user on macOS)
-make switch
-
-# Apply with dynamic username (for different users)
-make switch-dyn
+# Apply configuration (auto-detects platform)
+nix run .#switch
 
 # Apply with backup of existing files
-make switch-with-backup
-make switch-dyn-with-backup
+nix run .#switch-with-backup
 
 # List all generations
-make generations
+nix run .#generations
 
-# Remove old generations (set EXPIRE to date/time)
-make expire EXPIRE="-7 days"
+# Remove old generations
+nix run .#expire -- "-7 days"
 
 # Update flake inputs
-make flake-update
+nix run .#flake-update
 ```
 
 ## Architecture
 
 ### Directory Structure
 
-- `env/` - Platform-specific Home Manager configurations
-  - `aarch64-darwin/` - Apple Silicon macOS (primary)
-  - `x86_64-linux/` - Linux x86_64
-  - `x86_64-linux-desktop/` - Linux desktop with xremap
-  - `aarch64-vscode-devcontainer/` - VS Code devcontainers
-
+- `flake.nix` - Unified flake with all homeConfigurations
+- `home/` - Platform-specific Home Manager configurations
+  - `darwin.nix` - Apple Silicon macOS
+  - `linux.nix` - Linux x86_64
+- `modules/` - Platform-specific Nix modules
+  - `xremap.nix` - Linux key remapping
 - `programs/` - Reusable Nix modules for individual programs (zsh, git, vim, starship, mise, fzf, direnv, gh)
-
 - `.config/` - Raw config files symlinked via Home Manager (nvim, gh)
 
 ### Configuration Flow
 
-Each platform has a `flake.nix` defining inputs (nixpkgs, home-manager) and a `home.nix` that:
+The root `flake.nix` defines:
+1. All inputs (nixpkgs, home-manager, zig-overlay, zls-overlay, xremap-flake)
+2. Helper functions (`mkDarwinHome`, `mkLinuxHome`) for creating homeConfigurations
+3. homeConfigurations for each platform (`ytakhs@darwin`, `ytakhs@linux`)
+
+Each platform's home.nix (`home/darwin.nix`, `home/linux.nix`):
 1. Sets user-specific variables (username, homeDirectory)
 2. Lists packages to install
 3. Imports shared program modules from `programs/`
@@ -54,7 +54,7 @@ Each platform has a `flake.nix` defining inputs (nixpkgs, home-manager) and a `h
 ### Adding New Programs
 
 1. Create `programs/<name>/default.nix` with the program configuration
-2. Import it in the relevant `home.nix` file(s)
+2. Import it in the relevant home.nix file(s)
 
 ### Nix Formatting
 
