@@ -20,6 +20,22 @@ in
       "claude-code"
     ];
 
+  # Homebrew
+  homebrew = {
+    enable = true;
+    onActivation = {
+      autoUpdate = true;
+      cleanup = "zap";
+    };
+    brews = [ ];
+    casks = [
+      "1password"
+      "claude"
+      "ghostty"
+      "raycast"
+    ];
+  };
+
   # Fonts
   fonts.packages = with pkgs; [
     udev-gothic
@@ -28,6 +44,7 @@ in
 
   # System configuration
   system.stateVersion = 6;
+  system.primaryUser = username;
 
   # Home Manager integration
   home-manager = {

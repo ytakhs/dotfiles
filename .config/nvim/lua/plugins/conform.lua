@@ -12,10 +12,11 @@ return {
 	},
 	opts = {
 		formatters_by_ft = {
+			go = { "gofmt", "goimports" },
 			lua = { "stylua" },
-			go = { "gofumpt", "goimports" },
-			typescript = { "oxfmt" },
+			nix = { "nixfmt" },
 			rust = { "rustfmt" },
+			typescript = { "oxfmt" },
 			zig = { "zigfmt" },
 		},
 		format_on_save = {
