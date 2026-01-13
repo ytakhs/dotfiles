@@ -1,0 +1,35 @@
+# Sensitive files
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+
+# SSH keys
+.ssh/
+
+# GnuPG
+.gnupg/
+
+# GitHub CLI auth
+.config/gh/hosts.yml
+
+# AWS/Cloud credentials
+.aws/
+.config/gcloud/
+
+# macOS
+.DS_Store
+
+# Nix
+result
+result-*
+.direnv/
+
+# Editor
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
