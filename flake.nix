@@ -89,6 +89,14 @@
               ''
             );
           };
+          generations = {
+            type = "app";
+            program = toString (
+              pkgs.writeShellScript "generations" ''
+                sudo darwin-rebuild --list-generations
+              ''
+            );
+          };
           flake-update = {
             type = "app";
             program = toString (
