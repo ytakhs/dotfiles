@@ -35,8 +35,9 @@
     nil
     # rust
     rustup
-    # unfree packages
+    # coding agent
     claude-code
+    codex
   ];
 
   xdg.configFile = {

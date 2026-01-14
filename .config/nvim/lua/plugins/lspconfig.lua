@@ -20,6 +20,9 @@ return {
 			ts_server = {},
 			gopls = {},
 			zls = {},
+			vue_ls = {
+				filetypes = { "vue" },
+			},
 		}
 
 		vim.lsp.enable({
@@ -27,6 +30,7 @@ return {
 			"ts_server",
 			"gopls",
 			"zls",
+			"vue_ls",
 		})
 
 		for server, config in pairs(servers) do
