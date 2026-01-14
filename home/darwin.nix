@@ -39,13 +39,17 @@
     claude-code
   ];
 
-  home.file = {
-    ".config/nvim" = {
+  xdg.configFile = {
+    "nvim" = {
       source = ../.config/nvim;
       recursive = true;
     };
-    ".config/gh" = {
+    "gh" = {
       source = ../.config/gh;
+      recursive = true;
+    };
+    "ghostty" = {
+      source = ../.config/ghostty;
       recursive = true;
     };
   };
