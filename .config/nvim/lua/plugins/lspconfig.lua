@@ -2,11 +2,11 @@ return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
 		"saghen/blink.cmp",
-		"folke/neoconf.nvim", -- for lspconfig integration
 	},
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
+
 		local servers = {
 			lua_ls = {
 				settings = {
@@ -26,6 +26,15 @@ return {
 					"typescriptreact",
 					"typescript.tsx",
 					"vue",
+				},
+				init_options = {
+					plugins = vim.g.vue_language_server_path and {
+						{
+							name = "@vue/typescript-plugin",
+							languages = { "vue" },
+							location = vim.g.vue_language_server_path,
+						},
+					} or {},
 				},
 			},
 			gopls = {},
