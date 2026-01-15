@@ -17,17 +17,25 @@ return {
 					},
 				},
 			},
-			ts_server = {},
+			ts_ls = {
+				filetypes = {
+					"javascript",
+					"javascriptreact",
+					"javascript.jsx",
+					"typescript",
+					"typescriptreact",
+					"typescript.tsx",
+					"vue",
+				},
+			},
 			gopls = {},
 			zls = {},
-			vue_ls = {
-				filetypes = { "vue" },
-			},
+			vue_ls = {},
 		}
 
 		vim.lsp.enable({
 			"lua_ls",
-			"ts_server",
+			"ts_ls",
 			"gopls",
 			"zls",
 			"vue_ls",
