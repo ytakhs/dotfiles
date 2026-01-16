@@ -34,6 +34,12 @@
     zsh-syntax-highlighting
   ];
 
+  home.file = {
+    ".tmux.conf" = {
+      source = ../.tmux.conf;
+    };
+  };
+
   xdg.configFile = {
     "nvim" = {
       source = ../.config/nvim;

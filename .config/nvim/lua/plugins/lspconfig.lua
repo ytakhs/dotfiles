@@ -8,6 +8,7 @@ return {
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 		local servers = {
+			gopls = {},
 			lua_ls = {
 				settings = {
 					Lua = {
@@ -17,6 +18,8 @@ return {
 					},
 				},
 			},
+			nixd = {},
+			rust_analyzer = {},
 			ts_ls = {
 				filetypes = {
 					"javascript",
@@ -37,17 +40,18 @@ return {
 					} or {},
 				},
 			},
-			gopls = {},
-			zls = {},
 			vue_ls = {},
+			zls = {},
 		}
 
 		vim.lsp.enable({
-			"lua_ls",
-			"ts_ls",
 			"gopls",
-			"zls",
+			"lua_ls",
+			"nixd",
+			"rust_analyzer",
+			"ts_ls",
 			"vue_ls",
+			"zls",
 		})
 
 		for server, config in pairs(servers) do
@@ -70,6 +74,12 @@ return {
 					"gr",
 					vim.lsp.buf.references,
 					vim.tbl_extend("force", opts, { desc = "References" })
+				)
+				vim.keymap.set(
+					"n",
+					"gi",
+					vim.lsp.buf.implementation,
+					vim.tbl_extend("force", opts, { desc = "Implementation" })
 				)
 				vim.keymap.set(
 					"n",
