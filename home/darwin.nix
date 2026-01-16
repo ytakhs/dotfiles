@@ -12,32 +12,26 @@
   home.stateVersion = "25.05";
 
   home.packages = with pkgs; [
-    # base
-    gh
-    delta
-    ghq
-    jq
-    tig
-    hyperfine
     fastfetch
-    neovim
-    gnupg
-    zellij
-    ripgrep
-    # lua
-    lua-language-server
-    stylua
-    # zsh
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-    # nix development
-    nixfmt
-    nil
-    # rust
-    rustup
-    # coding agent
     claude-code
     codex
+    delta
+    gh
+    ghq
+    gnupg
+    hyperfine
+    jq
+    lua-language-server
+    neovim
+    nixd
+    nixfmt
+    ripgrep
+    rustup
+    stylua
+    tig
+    tmux
+    zsh-autosuggestions
+    zsh-syntax-highlighting
   ];
 
   xdg.configFile = {
