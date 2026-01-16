@@ -31,7 +31,10 @@ in
     casks = [
       "1password"
       "claude"
+      "google-chrome"
+      "google-drive"
       "ghostty"
+      "obsidian"
       "raycast"
     ];
   };
