@@ -19,6 +19,7 @@
     gh
     ghq
     gnupg
+    git-wt
     hyperfine
     jq
     lua-language-server
