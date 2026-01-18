@@ -54,6 +54,10 @@
       source = ../.config/ghostty;
       recursive = true;
     };
+    "karabinar-elements" = {
+      source = ../.config/karabinar-elements;
+      recursive = true;
+    };
   };
 
   home.sessionVariables = {
