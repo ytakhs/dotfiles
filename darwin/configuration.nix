@@ -34,6 +34,7 @@ in
       "google-chrome"
       "google-drive"
       "ghostty"
+      "karabiner-elements"
       "obsidian"
       "raycast"
     ];

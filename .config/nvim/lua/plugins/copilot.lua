@@ -16,10 +16,6 @@ return {
 				enabled = true,
 				auto_trigger = true,
 			},
-			nes = {
-				enabled = true,
-				auto_trigger = true,
-			},
 			filetypes = {
 				markdown = false,
 				org = false,
