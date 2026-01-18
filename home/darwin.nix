@@ -54,8 +54,8 @@
       source = ../.config/ghostty;
       recursive = true;
     };
-    "karabinar-elements" = {
-      source = ../.config/karabinar-elements;
+    "karabiner-elements" = {
+      source = ../.config/karabiner-elements;
       recursive = true;
     };
   };
