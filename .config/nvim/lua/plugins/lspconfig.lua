@@ -9,6 +9,7 @@ return {
 
 		local servers = {
 			gopls = {},
+			hls = {},
 			lua_ls = {
 				settings = {
 					Lua = {
@@ -46,6 +47,7 @@ return {
 
 		vim.lsp.enable({
 			"gopls",
+			"hls",
 			"lua_ls",
 			"nixd",
 			"rust_analyzer",
