@@ -28,9 +28,6 @@
     # nix development
     nixfmt-rfc-style
     nil
-    # zig
-    zig
-    zls
     # rust
     rustup
     # c/c++

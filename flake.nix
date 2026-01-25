@@ -11,15 +11,6 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # Linux-specific inputs
-    zig-overlay = {
-      url = "github:mitchellh/zig-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    zls-overlay = {
-      url = "github:zigtools/zls";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     xremap-flake = {
       url = "github:xremap/nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,12 +19,9 @@
 
   outputs =
     {
-      self,
       nixpkgs,
       home-manager,
       nix-darwin,
-      zig-overlay,
-      zls-overlay,
       xremap-flake,
       ...
     }:
@@ -49,25 +37,6 @@
         home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${system};
           modules = [
-            (
-              { config, pkgs, ... }:
-              {
-                nixpkgs.overlays = [
-                  (
-                    final: prev:
-                    let
-                      zig = zig-overlay.packages.${system}.master;
-                      zls = zls-overlay.packages.${system}.zls.overrideAttrs {
-                        nativeBuildInputs = [ zig ];
-                      };
-                    in
-                    {
-                      inherit zig zls;
-                    }
-                  )
-                ];
-              }
-            )
             ./home/linux.nix
           ];
           extraSpecialArgs = {

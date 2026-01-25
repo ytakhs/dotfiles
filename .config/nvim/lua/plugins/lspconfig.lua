@@ -20,6 +20,7 @@ return {
 				},
 			},
 			nixd = {},
+			ocamllsp = {},
 			rust_analyzer = {},
 			ts_ls = {
 				filetypes = {
@@ -50,6 +51,7 @@ return {
 			"hls",
 			"lua_ls",
 			"nixd",
+			"ocamllsp",
 			"rust_analyzer",
 			"ts_ls",
 			"vue_ls",
