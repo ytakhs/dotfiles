@@ -16,6 +16,7 @@ return {
 			haskell = { "ormolu", "stylish-haskell" },
 			lua = { "stylua" },
 			nix = { "nixfmt" },
+			ocaml = { "ocamlformat" },
 			rust = { "rustfmt" },
 			typescript = { "oxfmt" },
 			zig = { "zigfmt" },
