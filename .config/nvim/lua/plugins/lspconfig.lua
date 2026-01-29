@@ -8,6 +8,7 @@ return {
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 		local servers = {
+			eslint = {},
 			gopls = {},
 			hls = {},
 			lua_ls = {
@@ -21,6 +22,7 @@ return {
 			},
 			nixd = {},
 			ocamllsp = {},
+			oxlint = {},
 			rust_analyzer = {},
 			ts_ls = {
 				filetypes = {
@@ -47,11 +49,13 @@ return {
 		}
 
 		vim.lsp.enable({
+			"eslint",
 			"gopls",
 			"hls",
 			"lua_ls",
 			"nixd",
 			"ocamllsp",
+			"oxlint",
 			"rust_analyzer",
 			"ts_ls",
 			"vue_ls",
