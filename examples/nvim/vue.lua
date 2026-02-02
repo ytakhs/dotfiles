@@ -4,7 +4,7 @@ vim.lsp.config.ts_ls = {
 		plugins = {
 			{
 				name = "@vue/typescript-plugin",
-				location = "vue-language-server",
+				location = vim.fs.joinpath(vim.fn.getcwd(), "node_modules", "@vue", "language-server"),
 				languages = { "vue" },
 			},
 		},
