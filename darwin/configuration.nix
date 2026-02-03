@@ -25,14 +25,14 @@ in
     enable = true;
     onActivation = {
       autoUpdate = true;
-      cleanup = "zap";
+      cleanup = "uninstall";
     };
     brews = [ ];
     casks = [
       "1password"
       "claude"
+      "codex-app"
       "google-chrome"
-      "google-drive"
       "ghostty"
       "karabiner-elements"
       "obsidian"
