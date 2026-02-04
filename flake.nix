@@ -66,6 +66,14 @@
               ''
             );
           };
+          expire = {
+            type = "app";
+            program = toString (
+              pkgs.writeShellScript "expire" ''
+                sudo nix-collect-garbage --delete-older-than "$1d"
+              ''
+            );
+          };
           flake-update = {
             type = "app";
             program = toString (
@@ -111,7 +119,7 @@
             type = "app";
             program = toString (
               pkgs.writeShellScript "expire" ''
-                ${hmCmd} expire-generations --flake ${flakePath} "$@"
+                ${hmCmd} expire-generations --flake ${flakePath} "-$1 days"
               ''
             );
           };

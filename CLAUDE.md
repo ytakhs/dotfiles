@@ -14,6 +14,12 @@ nix run .#switch
 
 # Update flake inputs
 nix run .#flake-update
+
+# List all generations
+nix run .#generations
+
+# Remove old generations (e.g. older than 7 days)
+nix run .#expire -- 7
 ```
 
 ### Linux only
@@ -21,12 +27,6 @@ nix run .#flake-update
 ```sh
 # Apply with backup of existing files
 nix run .#switch-with-backup
-
-# List all generations
-nix run .#generations
-
-# Remove old generations
-nix run .#expire -- "-7 days"
 ```
 
 ## Architecture
