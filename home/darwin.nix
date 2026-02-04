@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   homeDirectory,
   username,
@@ -26,6 +25,7 @@
     neovim
     nixd
     nixfmt
+    opencode
     ripgrep
     rustup
     stylua
