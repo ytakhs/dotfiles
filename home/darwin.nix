@@ -12,6 +12,7 @@
 
   home.packages = with pkgs; [
     fastfetch
+    fd
     claude-code
     codex
     delta
