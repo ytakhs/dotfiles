@@ -2,8 +2,37 @@ return {
 	"folke/snacks.nvim",
 	priority = 1000,
 	lazy = false,
-	opts = {},
+	opts = {
+		explorer = {
+			replace_netrw = true,
+			trash = true,
+		},
+		picker = {
+			sources = {
+				explorer = {
+					hidden = true,
+					ignored = true,
+					diagnostics = true,
+					diagnostics_open = true,
+					git_status = true,
+					git_status_open = true,
+					exclude = {
+						".git",
+						".DS_Store",
+					},
+				},
+			},
+		},
+	},
 	keys = {
+		-- explorer
+		{
+			"<leader>e",
+			function()
+				Snacks.explorer()
+			end,
+			desc = "Toggle Explorer",
+		},
 		-- find
 		{
 			"<leader><space>",
