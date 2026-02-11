@@ -11,11 +11,11 @@
   home.stateVersion = "25.05";
 
   home.packages = with pkgs; [
-    fastfetch
-    fd
+    bat
     claude-code
     codex
     delta
+    fd
     gh
     ghq
     gnupg
