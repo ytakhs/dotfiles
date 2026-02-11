@@ -1,0 +1,70 @@
+return {
+	-- 	"ibhagwan/fzf-lua",
+	-- 	dependencies = {
+	-- 		"nvim-mini/mini.icons",
+	-- 		"stevearc/aerial.nvim",
+	-- 		{
+	-- 			"elanmed/fzf-lua-frecency.nvim",
+	-- 			version = "5726403e132fe8699d670c7ef8d59dbed887b4e6",
+	-- 			config = function()
+	-- 				require("fzf-lua-frecency").setup({})
+	-- 			end,
+	-- 		},
+	-- 	},
+	-- 	---@module "fzf-lua"
+	-- 	---@type fzf-lua.Config|{}
+	-- 	---@diagnostic disable: missing-fields
+	-- 	opts = {},
+	-- 	config = function()
+	-- 		local fzf = require("fzf-lua")
+	-- 		fzf.setup({
+	-- 			keymap = {
+	-- 				fzf = {
+	-- 					true,
+	-- 					["ctrl-q"] = "select-all+accept",
+	-- 				},
+	-- 			},
+	-- 			grep = {
+	-- 				hidden = true,
+	-- 				git_icons = true,
+	-- 				rg_opts = "--glob '!.git/*' --column --line-number --no-heading --color=always --smart-case --max-columns=4096 -e",
+	-- 			},
+	-- 			oldfiles = {
+	-- 				cwd_only = true,
+	-- 			},
+	-- 			buffers = {
+	-- 				cwd_only = true,
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- 	---@diagnostic enable: missing-fields
+	-- 	keys = {
+	-- 		{
+	-- 			"<leader>ff",
+	-- 			":FzfLua files<CR>",
+	-- 			desc = "FzfLua find files",
+	-- 		},
+	-- 		{
+	-- 			"<leader>fg",
+	-- 			":FzfLua live_grep<CR>",
+	-- 			desc = "FzfLua live grep",
+	-- 		},
+	-- 		{
+	-- 			"<leader>fh",
+	-- 			":FzfLua helptags<CR>",
+	-- 			desc = "FzfLua help tags",
+	-- 		},
+	-- 		{
+	-- 			"<leader>fo",
+	-- 			function()
+	-- 				require("aerial").fzf_lua_picker()
+	-- 			end,
+	-- 			desc = "FzfLua aerial symbols",
+	-- 		},
+	-- 		{
+	-- 			"<leader>fr",
+	-- 			":FzfLua frecency cwd_only=true<CR>",
+	-- 			desc = "FzfLua recent files",
+	-- 		},
+	-- 	},
+}
