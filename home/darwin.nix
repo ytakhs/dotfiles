@@ -43,10 +43,6 @@
   };
 
   xdg.configFile = {
-    "nvim" = {
-      source = ../.config/nvim;
-      recursive = true;
-    };
     "gh" = {
       source = ../.config/gh;
       recursive = true;
@@ -57,6 +53,10 @@
     };
     "karabiner" = {
       source = ../.config/karabiner;
+      recursive = true;
+    };
+    "nvim" = {
+      source = ../.config/nvim;
       recursive = true;
     };
   };
