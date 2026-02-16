@@ -30,6 +30,7 @@ in
     brews = [ ];
     casks = [
       "1password"
+      "chatgpt"
       "claude"
       "codex-app"
       "google-chrome"
