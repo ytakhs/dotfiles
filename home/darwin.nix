@@ -22,6 +22,7 @@
     git-wt
     hyperfine
     jq
+    lazygit
     lua-language-server
     neovim
     nixd
@@ -36,12 +37,6 @@
     zsh-syntax-highlighting
   ];
 
-  home.file = {
-    ".tmux.conf" = {
-      source = ../.tmux.conf;
-    };
-  };
-
   xdg.configFile = {
     "gh" = {
       source = ../.config/gh;
@@ -55,14 +50,23 @@
       source = ../.config/karabiner;
       recursive = true;
     };
+    "lazygit" = {
+      source = ../.config/lazygit;
+      recursive = true;
+    };
     "nvim" = {
       source = ../.config/nvim;
+      recursive = true;
+    };
+    "tmux" = {
+      source = ../.config/tmux;
       recursive = true;
     };
   };
 
   home.sessionVariables = {
     EDITOR = "vim";
+    XDG_CONFIG_HOME = "$HOME/.config";
   };
 
   imports = [
