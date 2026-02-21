@@ -13,7 +13,7 @@
   home.packages = with pkgs; [
     bat
     claude-code
-    codex
+    # codex # TODO: Re-enable when nixpkgs releases latest version of codex
     delta
     fd
     gh

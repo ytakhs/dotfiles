@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   lib,
   ...
@@ -32,8 +31,10 @@ in
       "1password"
       "chatgpt"
       "claude"
+      "codex"
       "codex-app"
       "google-chrome"
+      "google-japanese-ime"
       "ghostty"
       "karabiner-elements"
       "obsidian"
