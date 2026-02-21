@@ -56,7 +56,6 @@
     ../programs/git
     ../programs/gh
     ../programs/vim
-    ../programs/starship
     ../programs/mise
     ../programs/fzf
   ];

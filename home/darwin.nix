@@ -30,6 +30,7 @@
     opencode
     ripgrep
     rustup
+    starship
     stylua
     tig
     tmux
@@ -58,6 +59,9 @@
       source = ../.config/nvim;
       recursive = true;
     };
+    "starship.toml" = {
+      source = ../.config/starship.toml;
+    };
     "tmux" = {
       source = ../.config/tmux;
       recursive = true;
@@ -73,7 +77,6 @@
     ../programs/zsh
     ../programs/git
     ../programs/vim
-    ../programs/starship
     ../programs/mise
     ../programs/fzf
     ../programs/direnv
