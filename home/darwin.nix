@@ -30,7 +30,6 @@
     opencode
     ripgrep
     rustup
-    starship
     stylua
     tig
     tmux
@@ -74,11 +73,12 @@
   };
 
   imports = [
-    ../programs/zsh
-    ../programs/git
-    ../programs/vim
-    ../programs/mise
-    ../programs/fzf
     ../programs/direnv
+    ../programs/fzf
+    ../programs/git
+    ../programs/mise
+    ../programs/starship
+    ../programs/vim
+    ../programs/zsh
   ];
 }
