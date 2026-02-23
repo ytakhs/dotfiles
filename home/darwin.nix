@@ -11,9 +11,13 @@
   home.stateVersion = "25.05";
 
   home.packages = with pkgs; [
+    # llm-agents
+    llm-agents.claude-code
+    llm-agents.codex
+    llm-agents.opencode
+
+    # nixpkgs
     bat
-    claude-code
-    # codex # TODO: Re-enable when nixpkgs releases latest version of codex
     delta
     fd
     gh
@@ -27,7 +31,6 @@
     neovim
     nixd
     nixfmt
-    opencode
     ripgrep
     rustup
     stylua

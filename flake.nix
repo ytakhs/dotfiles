@@ -15,6 +15,10 @@
       url = "github:xremap/nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    llm-agents = {
+      url = "github:numtide/llm-agents.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -23,6 +27,7 @@
       home-manager,
       nix-darwin,
       xremap-flake,
+      llm-agents,
       ...
     }:
     let
@@ -74,11 +79,19 @@
               ''
             );
           };
-          flake-update = {
+          update = {
             type = "app";
             program = toString (
-              pkgs.writeShellScript "flake-update" ''
+              pkgs.writeShellScript "update" ''
                 nix flake update --flake ${flakePath}
+              ''
+            );
+          };
+          update-agents = {
+            type = "app";
+            program = toString (
+              pkgs.writeShellScript "update-agents" ''
+                nix flake update llm-agents --flake ${flakePath}
               ''
             );
           };
@@ -123,10 +136,10 @@
               ''
             );
           };
-          flake-update = {
+          update = {
             type = "app";
             program = toString (
-              pkgs.writeShellScript "flake-update" ''
+              pkgs.writeShellScript "update" ''
                 nix flake update --flake ${flakePath}
               ''
             );
@@ -137,6 +150,7 @@
       darwinConfigurations.ytakhs = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
+          { nixpkgs.overlays = [ llm-agents.overlays.default ]; }
           home-manager.darwinModules.home-manager
           ./darwin/configuration.nix
         ];

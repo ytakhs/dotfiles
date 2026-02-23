@@ -31,7 +31,6 @@ in
       "1password"
       "chatgpt"
       "claude"
-      "codex"
       "codex-app"
       "google-chrome"
       "google-japanese-ime"
