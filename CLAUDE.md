@@ -12,8 +12,11 @@ This is a Nix-based dotfiles repository using nix-darwin (macOS) and Home Manage
 # Apply configuration (auto-detects platform)
 nix run .#switch
 
-# Update flake inputs
-nix run .#flake-update
+# Update all flake inputs
+nix run .#update
+
+# Update llm-agents input only
+nix run .#update-agents
 
 # List all generations
 nix run .#generations

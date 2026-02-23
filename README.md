@@ -29,8 +29,8 @@ chsh -s $(which zsh)
 # Apply configuration
 nix run .#switch
 
-# Update flake inputs
-nix run .#flake-update
+# Update all flake inputs
+nix run .#update
 ```
 
 ### Linux only
