@@ -61,9 +61,6 @@
       source = ../.config/nvim;
       recursive = true;
     };
-    "starship.toml" = {
-      source = ../.config/starship.toml;
-    };
     "tmux" = {
       source = ../.config/tmux;
       recursive = true;
@@ -80,7 +77,6 @@
     ../programs/fzf
     ../programs/git
     ../programs/mise
-    ../programs/starship
     ../programs/vim
     ../programs/zsh
   ];
