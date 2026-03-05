@@ -40,6 +40,13 @@
     zsh-syntax-highlighting
   ];
 
+  home.file = {
+    ".claude/skills" = {
+      source = ../agent/skills;
+      recursive = true;
+    };
+  };
+
   xdg.configFile = {
     "gh" = {
       source = ../.config/gh;
@@ -63,6 +70,10 @@
     };
     "tmux" = {
       source = ../.config/tmux;
+      recursive = true;
+    };
+    "zsh" = {
+      source = ../.config/zsh;
       recursive = true;
     };
   };
