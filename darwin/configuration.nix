@@ -28,6 +28,7 @@ in
     };
     brews = [ ];
     casks = [
+      "azookey"
       "1password"
       "chatgpt"
       "claude"
