@@ -48,6 +48,9 @@
       source = ../agent/skills;
       recursive = true;
     };
+    ".local/bin/desktop-notifier" = {
+      source = ../agent/scripts/desktop-notifier;
+    };
   };
 
   xdg.configFile = {
