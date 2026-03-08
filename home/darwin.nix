@@ -18,6 +18,7 @@
 
     # nixpkgs
     bat
+    bash-language-server
     delta
     fd
     gh
@@ -33,6 +34,8 @@
     nixfmt
     ripgrep
     rustup
+    shellcheck
+    socat
     stylua
     tig
     tmux
