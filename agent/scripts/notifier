@@ -1,0 +1,163 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+PORT="${NOTIFIER_PORT:-9999}"
+SELF="$(printf '%q' "$(readlink -f "$0")")"
+RUNTIME_DIR="/tmp/notifier-$(id -u)"
+mkdir -p "$RUNTIME_DIR"
+PID_FILE="${RUNTIME_DIR}/notifier.pid"
+LOG_FILE="${RUNTIME_DIR}/notifier.log"
+MAX_INPUT_BYTES=4096
+
+sanitize() {
+  tr -d '[:cntrl:]'
+}
+
+log() {
+  echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*" >&2
+}
+
+# PIDファイルから有効なPIDを読み取る
+# 成功時: PIDを stdout に出力し 0 を返す
+# 失敗時: 不正なPIDファイルは削除し 1 を返す
+read_pid() {
+  if [[ ! -f "$PID_FILE" ]]; then
+    return 1
+  fi
+  local pid
+  pid="$(cat "$PID_FILE")"
+  if ! [[ "$pid" =~ ^[0-9]+$ ]]; then
+    log "invalid PID file content, removing"
+    rm -f "$PID_FILE"
+    return 1
+  fi
+  echo "$pid"
+}
+
+handle_connection() {
+  local input
+  input="$(head -c "$MAX_INPUT_BYTES")"
+
+  if [[ -z "$input" ]]; then
+    log "empty input, skipping"
+    return
+  fi
+
+  local title message sound
+  if ! IFS=$'\t' read -r title message sound < <(printf '%s' "$input" | jq -r '[.title // "", .message // "", .sound // ""] | @tsv' 2>/dev/null); then
+    log "invalid JSON: $(printf '%s' "$input" | sanitize)"
+    return
+  fi
+
+  if [[ -z "$title" && -z "$message" ]]; then
+    log "missing title and message, skipping"
+    return
+  fi
+
+  osascript - "$title" "$message" "$sound" <<'APPLESCRIPT'
+on run argv
+  set theTitle to item 1 of argv
+  set theMessage to item 2 of argv
+  set theSound to item 3 of argv
+  if theSound is "" then
+    display notification theMessage with title theTitle
+  else
+    display notification theMessage with title theTitle sound name theSound
+  end if
+end run
+APPLESCRIPT
+
+  log "notified: title='${title}' message='${message}' sound='${sound}'"
+}
+
+run_server() {
+  log "notifier listening on 127.0.0.1:${PORT}"
+  socat "TCP-LISTEN:${PORT},bind=127.0.0.1,reuseaddr,fork" \
+    EXEC:"${SELF} __handle"
+}
+
+cmd_start() {
+  local pid
+  if pid="$(read_pid)" && kill -0 "$pid" 2>/dev/null; then
+    echo "notifier already running (PID ${pid})"
+    return
+  fi
+  "$0" __run >>"$LOG_FILE" 2>&1 &
+  local pid=$!
+  echo "$pid" >"$PID_FILE"
+  echo "notifier started (PID ${pid}, port ${PORT})"
+}
+
+cmd_stop() {
+  local pid
+  if ! pid="$(read_pid)"; then
+    echo "notifier is not running"
+    return
+  fi
+  if kill -0 "$pid" 2>/dev/null; then
+    pkill -P "$pid" 2>/dev/null || true
+    kill "$pid" 2>/dev/null || true
+    echo "notifier stopped (PID ${pid})"
+  else
+    echo "notifier was not running (stale PID file)"
+  fi
+  rm -f "$PID_FILE"
+}
+
+cmd_status() {
+  local pid
+  if ! pid="$(read_pid)"; then
+    echo "notifier is not running"
+    return
+  fi
+  if kill -0 "$pid" 2>/dev/null; then
+    echo "notifier is running (PID ${pid}, port ${PORT})"
+  else
+    echo "notifier is not running (stale PID file)"
+  fi
+}
+
+cmd_logs() {
+  if [[ ! -f "$LOG_FILE" ]]; then
+    echo "no log file found"
+    return
+  fi
+  tail -f "$LOG_FILE"
+}
+
+case "${1:-}" in
+  __handle)
+    handle_connection
+    ;;
+  __run)
+    run_server
+    ;;
+  start)
+    cmd_start
+    ;;
+  stop)
+    cmd_stop
+    ;;
+  restart)
+    cmd_stop
+    cmd_start
+    ;;
+  status)
+    cmd_status
+    ;;
+  logs)
+    cmd_logs
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|restart|status|logs}"
+    echo ""
+    echo "  start    Start server in background"
+    echo "  stop     Stop background server"
+    echo "  restart  Restart background server"
+    echo "  status   Show server status"
+    echo "  logs     Tail the log file"
+    echo ""
+    echo "Port defaults to \$NOTIFIER_PORT or 9999."
+    exit 1
+    ;;
+esac
