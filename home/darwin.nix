@@ -19,6 +19,7 @@
     # nixpkgs
     bat
     bash-language-server
+    bun
     delta
     fd
     gh
