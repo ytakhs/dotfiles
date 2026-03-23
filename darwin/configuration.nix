@@ -39,6 +39,7 @@ in
       "karabiner-elements"
       "obsidian"
       "raycast"
+      "tradingview"
     ];
   };
 
