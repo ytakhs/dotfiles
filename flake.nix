@@ -49,12 +49,72 @@
           };
         };
 
+      mkDarwinHome =
+        {
+          username,
+          homeDirectory,
+        }:
+        let
+          system = "aarch64-darwin";
+          pkgs = import nixpkgs {
+            inherit system;
+            overlays = [ llm-agents.overlays.default ];
+            config.allowUnfreePredicate =
+              pkg:
+              builtins.elem (nixpkgs.lib.getName pkg) [
+                "claude-code"
+              ];
+          };
+        in
+        home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            ./home/darwin.nix
+          ];
+          extraSpecialArgs = {
+            inherit username homeDirectory;
+          };
+        };
+
       mkDarwinApps =
         let
           pkgs = nixpkgs.legacyPackages.aarch64-darwin;
           flakePath = "$HOME/dotfiles";
+          hmCmd = "nix run nixpkgs#home-manager --";
         in
         {
+          hm-switch = {
+            type = "app";
+            program = toString (
+              pkgs.writeShellScript "hm-switch" ''
+                ${hmCmd} switch --flake ${flakePath}#ytakhs@darwin
+              ''
+            );
+          };
+          hm-switch-with-backup = {
+            type = "app";
+            program = toString (
+              pkgs.writeShellScript "hm-switch-with-backup" ''
+                ${hmCmd} switch --flake ${flakePath}#ytakhs@darwin -b backup
+              ''
+            );
+          };
+          hm-generations = {
+            type = "app";
+            program = toString (
+              pkgs.writeShellScript "hm-generations" ''
+                ${hmCmd} generations --flake ${flakePath}
+              ''
+            );
+          };
+          hm-expire = {
+            type = "app";
+            program = toString (
+              pkgs.writeShellScript "hm-expire" ''
+                ${hmCmd} expire-generations --flake ${flakePath} "-$1 days"
+              ''
+            );
+          };
           switch = {
             type = "app";
             program = toString (
@@ -157,6 +217,10 @@
       };
 
       homeConfigurations = {
+        "ytakhs@darwin" = mkDarwinHome {
+          username = "ytakhs";
+          homeDirectory = "/Users/ytakhs";
+        };
         "ytakhs@linux" = mkLinuxHome {
           username = "ytakhs";
           homeDirectory = /home/ytakhs;

@@ -25,6 +25,22 @@ nix run .#generations
 nix run .#expire -- 7
 ```
 
+### macOS Home Manager only (without nix-darwin)
+
+```sh
+# Apply configuration via Home Manager
+nix run .#hm-switch
+
+# Apply with backup of existing files
+nix run .#hm-switch-with-backup
+
+# List all generations
+nix run .#hm-generations
+
+# Remove old generations (e.g. older than 7 days)
+nix run .#hm-expire -- 7
+```
+
 ### Linux only
 
 ```sh
@@ -53,6 +69,10 @@ nix run .#switch-with-backup
 1. `darwinConfigurations.ytakhs` in flake.nix
 2. Loads `darwin/configuration.nix` which integrates home-manager
 3. home-manager loads `home/darwin.nix`
+
+**macOS (Home Manager standalone)**:
+1. `homeConfigurations."ytakhs@darwin"` in flake.nix
+2. Directly loads `home/darwin.nix`
 
 **Linux (Home Manager)**:
 1. `homeConfigurations."ytakhs@linux"` in flake.nix
