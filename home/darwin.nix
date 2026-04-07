@@ -24,7 +24,6 @@
     gh
     ghq
     gnupg
-    git-wt
     hyperfine
     jq
     lazygit
@@ -37,10 +36,7 @@
     shellcheck
     socat
     stylua
-    tig
     tmux
-    zsh-autosuggestions
-    zsh-syntax-highlighting
   ];
 
   home.file = {
