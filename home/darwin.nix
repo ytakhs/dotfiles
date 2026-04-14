@@ -38,6 +38,7 @@
     socat
     stylua
     tmux
+    tree-sitter
   ];
 
   home.file = {
