@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   homeDirectory,
   username,
@@ -67,8 +68,7 @@
       recursive = true;
     };
     "nvim" = {
-      source = ../.config/nvim;
-      recursive = true;
+      source = config.lib.file.mkOutOfStoreSymlink "${homeDirectory}/dev/ghq/github.com/ytakhs/dotfiles/.config/nvim";
     };
     "tmux" = {
       source = ../.config/tmux;

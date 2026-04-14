@@ -38,8 +38,7 @@
 
   home.file = {
     ".config/nvim" = {
-      source = ../.config/nvim;
-      recursive = true;
+      source = config.lib.file.mkOutOfStoreSymlink "${homeDirectory}/dev/ghq/github.com/ytakhs/dotfiles/.config/nvim";
     };
   };
 
