@@ -79,7 +79,7 @@
       mkDarwinApps =
         let
           pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-          flakePath = "$HOME/dotfiles";
+          flakePath = "$HOME/dev/ghq/github.com/ytakhs/dotfiles";
           hmCmd = "nix run nixpkgs#home-manager --";
         in
         {
@@ -160,7 +160,7 @@
       mkLinuxApps =
         let
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          flakePath = "$HOME/dotfiles";
+          flakePath = "$HOME/dev/ghq/github.com/ytakhs/dotfiles";
           hmCmd = "nix run nixpkgs#home-manager --";
         in
         {
