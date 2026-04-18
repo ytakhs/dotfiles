@@ -30,6 +30,14 @@ return {
 						return "CodeCompanion(" .. adapter.formatted_name .. ")"
 					end,
 				},
+				keymaps = {
+					send = {
+						modes = { n = "<CR>", i = "<C-CR>" },
+					},
+					close = {
+						modes = { n = "q", i = "<Nop>" },
+					},
+				},
 				slash_commands = {
 					["buffer"] = {
 						opts = {
@@ -73,6 +81,7 @@ return {
 				})
 			end,
 		},
+		prompt_library = {},
 	},
 	keys = {
 		{ "<leader>cc", "<cmd>CodeCompanion<cr>", desc = "Code Companion", mode = { "n", "v" } },
