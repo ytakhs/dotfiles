@@ -62,6 +62,8 @@ nix run .#switch-with-backup
   - `xremap.nix` - Linux key remapping
 - `programs/` - Reusable Nix modules for individual programs (zsh, git, vim, starship, mise, fzf, direnv, gh)
 - `.config/` - Raw config files symlinked via Home Manager (nvim, gh)
+- `plugins/` - Claude Code plugins (registered via `.claude-plugin/marketplace.json`)
+- `.claude-plugin/` - Plugin marketplace configuration
 
 ### Configuration Flow
 
@@ -77,6 +79,12 @@ nix run .#switch-with-backup
 **Linux (Home Manager)**:
 1. `homeConfigurations."ytakhs@linux"` in flake.nix
 2. Directly loads `home/linux.nix`
+
+### Adding New Plugins
+
+1. Create `plugins/<name>/.claude-plugin/plugin.json` with name, version, description
+2. Add skills under `plugins/<name>/skills/<skill-name>/SKILL.md` or hooks in `plugins/<name>/.claude-plugin/settings.json`
+3. Register the plugin in `.claude-plugin/marketplace.json`
 
 ### Adding New Programs
 

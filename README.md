@@ -33,6 +33,13 @@ nix run .#switch
 nix run .#update
 ```
 
+### Claude Code Plugins
+
+Claude Code plugins are managed under `plugins/` and registered in `.claude-plugin/marketplace.json`.
+
+- `code-review` - Code review skill (Japanese output)
+- `desktop-notifier` - Desktop notification daemon for session events (macOS)
+
 ### Linux only
 
 ```sh

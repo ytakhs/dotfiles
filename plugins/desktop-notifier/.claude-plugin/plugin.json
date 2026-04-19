@@ -1,0 +1,5 @@
+{
+  "name": "desktop-notifier",
+  "version": "0.1.0",
+  "description": "Desktop notification daemon for Claude Code session events (macOS)"
+}

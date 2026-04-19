@@ -43,7 +43,7 @@
 
   home.file = {
     ".local/bin/desktop-notifier" = {
-      source = ../agent/scripts/desktop-notifier;
+      source = ../plugins/desktop-notifier/scripts/desktop-notifier;
     };
   };
 
