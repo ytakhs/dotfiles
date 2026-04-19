@@ -1,10 +1,5 @@
 ---
-name: code-review
 description: Review code changes for bugs, readability, security, and best practices. Use when reviewing staged/unstaged changes or specific files.
-context: fork
-agent: general-purpose
-allowed-tools: Read, Grep, Glob, Bash
-argument-hint: [file-or-path]
 ---
 
 # Code Review
