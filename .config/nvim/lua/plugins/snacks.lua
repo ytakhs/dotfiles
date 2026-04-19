@@ -21,6 +21,14 @@ return {
 						".DS_Store",
 					},
 				},
+				files = {
+					hidden = true,
+					ignored = false,
+					exclude = {
+						".git",
+						".DS_Store",
+					},
+				},
 			},
 		},
 	},
