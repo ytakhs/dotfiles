@@ -32,7 +32,7 @@ return {
 				},
 				keymaps = {
 					send = {
-						modes = { n = "<CR>", i = "<C-CR>" },
+						modes = { n = "<CR>", i = "<Nop>" },
 					},
 					close = {
 						modes = { n = "q", i = "<Nop>" },
