@@ -11,12 +11,12 @@
   "plugins": [
     {
       "name": "code-review",
-      "source": "code-review",
+      "source": "./plugins/code-review",
       "description": "Review code changes for bugs, readability, security, and best practices (Japanese output)"
     },
     {
       "name": "desktop-notifier",
-      "source": "desktop-notifier",
+      "source": "./plugins/desktop-notifier",
       "description": "Desktop notification daemon for Claude Code session events (macOS)"
     }
   ]
