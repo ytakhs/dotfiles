@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "desktop-notifier start"
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/desktop-notifier start"
           }
         ]
       }
