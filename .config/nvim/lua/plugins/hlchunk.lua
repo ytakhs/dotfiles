@@ -1,7 +1,8 @@
-return {
-	"shellRaining/hlchunk.nvim",
-	event = { "BufReadPre", "BufNewFile" },
-	opts = {
+local loader = require("config.loader")
+
+vim.pack.add({ "https://github.com/shellRaining/hlchunk.nvim" }, { load = false })
+loader.on_event({ "BufReadPre", "BufNewFile" }, "hlchunk.nvim", function()
+	require("hlchunk").setup({
 		indent = {
 			enable = true,
 		},
@@ -11,5 +12,5 @@ return {
 		chunk = {
 			enable = true,
 		},
-	},
-}
+	})
+end)

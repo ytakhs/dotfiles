@@ -1,12 +1,13 @@
-return {
-	"olimorris/codecompanion.nvim",
-	version = "^19.0.0",
-	dependencies = {
-		"nvim-lua/plenary.nvim",
-		"nvim-treesitter/nvim-treesitter",
-	},
-	cmd = { "CodeCompanion", "CodeCompanionActions", "CodeCompanionChat" },
-	opts = {
+local loader = require("config.loader")
+
+vim.pack.add({
+	"https://github.com/nvim-lua/plenary.nvim",
+	"https://github.com/nvim-treesitter/nvim-treesitter",
+	{ src = "https://github.com/olimorris/codecompanion.nvim", version = vim.version.range("^19.0") },
+}, { load = false })
+
+local function setup()
+	require("codecompanion").setup({
 		opts = {
 			language = "Japanese",
 		},
@@ -82,10 +83,15 @@ return {
 			end,
 		},
 		prompt_library = {},
-	},
-	keys = {
-		{ "<leader>cc", "<cmd>CodeCompanion<cr>", desc = "Code Companion", mode = { "n", "v" } },
-		{ "<leader>ca", "<cmd>CodeCompanionActions<cr>", desc = "Code Companion Actions", mode = { "n", "v" } },
-		{ "<leader>ch", "<cmd>CodeCompanionChat<cr>", desc = "Code Companion Chat", mode = { "n", "v" } },
-	},
-}
+	})
+end
+
+loader.on_cmd(
+	{ "CodeCompanion", "CodeCompanionActions", "CodeCompanionChat" },
+	{ "plenary.nvim", "nvim-treesitter", "codecompanion.nvim" },
+	setup
+)
+
+vim.keymap.set({ "n", "v" }, "<leader>cc", "<cmd>CodeCompanion<cr>", { desc = "Code Companion" })
+vim.keymap.set({ "n", "v" }, "<leader>ca", "<cmd>CodeCompanionActions<cr>", { desc = "Code Companion Actions" })
+vim.keymap.set({ "n", "v" }, "<leader>ch", "<cmd>CodeCompanionChat<cr>", { desc = "Code Companion Chat" })
