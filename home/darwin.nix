@@ -14,7 +14,6 @@
   home.packages = with pkgs; [
     # llm-agents
     llm-agents.claude-code
-    llm-agents.opencode
 
     # nixpkgs
     bat
