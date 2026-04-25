@@ -30,7 +30,6 @@ in
     casks = [
       "azookey"
       "1password"
-      "chatgpt"
       "claude"
       "codex-app"
       "google-chrome"
@@ -39,7 +38,7 @@ in
       "karabiner-elements"
       "obsidian"
       "raycast"
-      "tradingview"
+      "visual-studio-code"
     ];
   };
 
