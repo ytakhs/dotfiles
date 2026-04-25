@@ -31,7 +31,7 @@
       "src": "https://github.com/copilotlsp-nvim/copilot-lsp"
     },
     "copilot.lua": {
-      "rev": "adff470bca742b7658228ed144589250ecb3dc0a",
+      "rev": "3b95c93d804077dd409d62a6da53a8c92ac8f415",
       "src": "https://github.com/zbirenbaum/copilot.lua"
     },
     "friendly-snippets": {
@@ -63,7 +63,7 @@
       "src": "https://github.com/kevinhwang91/nvim-bqf"
     },
     "nvim-lspconfig": {
-      "rev": "81878de76c0de4ce289513734ad80c31ec7871b8",
+      "rev": "8fde495949782bb61c2605174e231d145a048d8c",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-markdown": {
