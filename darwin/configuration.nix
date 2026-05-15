@@ -38,6 +38,7 @@ in
       "karabiner-elements"
       "obsidian"
       "raycast"
+      "tradingview"
       "visual-studio-code"
     ];
   };
